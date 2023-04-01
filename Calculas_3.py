@@ -1,4 +1,6 @@
 import numpy as np
+import sympy
+#________________________________________________________________________________
 def evalFn(n,x,y):
  #raise value if n<0 and if the data type would be correct.
     if type(x) != int and type(y) != int:
@@ -14,7 +16,7 @@ def evalFn(n,x,y):
 #Below if the function in it self.        
     return ((2*(n-1)*x*y*evalFn(n-1,x,y))-((2*(n-1)+1)*evalFn(n-2,x,y)))/(2*((n-1)**2))
 
-import sympy
+#________________________________________________________________________________
 def symbolicFn(n,x,y):
 #VALIDATING THE DATA TYPE
     if type(x) != sympy.core.symbol.Symbol and type(y) != sympy.core.symbol.Symbol:
@@ -29,6 +31,7 @@ def symbolicFn(n,x,y):
 #FINISHING THE RECURSION     
     return sympy.Poly(((2*(n-1)*x*y*symbolicFn(n-1,x,y))-((2*(n-1)+1)*symbolicFn(n-2,x,y)))/(2*((n-1)**2)),x,y,domain=sympy.QQ)
 
+#________________________________________________________________________________
 def S(x):
     z= 1+(x*y)**2
     S = sympy.integrate(z, (y, x**2, 1))
